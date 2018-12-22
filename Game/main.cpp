@@ -10,7 +10,7 @@
 #include <iostream>
 #include <iomanip>
 #include <unistd.h> // for sleep()
-//#include <ncursesw/curses.h>
+////#include <ncursesw/curses.h>
 #include <ncursesw/ncurses.h>
 #include <cstdio>
 #include <stdio.h>
