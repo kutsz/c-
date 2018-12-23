@@ -18,5 +18,8 @@ void del_field(char **p_field, int rows);
 void init(char **p_field, int rows, int cols);
 char **creat_field(int rows, int cols);
 
+void obstacles(char **p_field, char ch);
+void danger(char **p_field, int row, int col, char ch);
+
 #endif /* FIELD_H */
 
