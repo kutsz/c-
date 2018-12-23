@@ -25,14 +25,16 @@ using namespace std;
 //void init(char **p_field, int rows, int cols);
 //char **creat_field(int rows, int cols);
 
-void obstacles(char **p_field, char ch);
+//void obstacles(char **p_field, char ch);
+//void danger(char **p_field, int row, int col, char ch);
 
 //void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
 //void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
 
 //int move_rt(int j, int cols);
 int move_rt(int j, int cols, int lim, int step);
-int move_lt(int j, int num);
+//int move_lt(int j, int num);
+int move_lt(int j, int num, int step);
 int move_up(int i, int num);
 int move_dn(int i, int rows);
 
@@ -40,8 +42,6 @@ void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht)
 void jump_dn(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
 void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int ht);
 void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int rows, int ht);
-
-void danger(char **p_field, int row, int col, char ch);
 
 int main()
 {
@@ -99,8 +99,16 @@ int main()
             {
 
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_rt_lt = move_lt(step_rt_lt, 2);
+                //step_rt_lt = move_lt(step_rt_lt, 2);
+                person_lt(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                //usleep(500);
+                person_lt(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                step_rt_lt = move_lt(step_rt_lt, 4, 3);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+
                 break;
             }
             case 'd':
@@ -109,12 +117,12 @@ int main()
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 // step_rt_lt = move_rt(step_rt_lt, cols);
 
-                person1(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                person_rt(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
                 //usleep(500);
-                person1(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_rt(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 step_rt_lt = move_rt(step_rt_lt, cols, 9, 3);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 break;
@@ -158,7 +166,7 @@ int main()
             case 's':
             {
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                person1(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                person_lt(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 break;
             }
 
@@ -174,7 +182,7 @@ int main()
                 break;
             }
         }
-        obstacles(p_field, '@');
+        //obstacles(p_field, '@');
         ////sleep(2);
         system("clear");
         //        person(p_field, 32, 5, '(',')','#');
@@ -197,6 +205,7 @@ int main()
 
     return 0;
 }
+
 /*
 char **creat_field(int rows, int cols)
 {
@@ -262,7 +271,7 @@ void del_field(char **p_field, int rows)
 
 
 }
-*/
+ */
 
 int move_rt(int j, int cols, int lim, int step)
 {
@@ -272,10 +281,10 @@ int move_rt(int j, int cols, int lim, int step)
 
 }
 
-int move_lt(int j, int num)
+int move_lt(int j, int num, int step)
 {
     //j = (j > num) ? --j : j;
-    j = (j > num) ? j - 3 : j;
+    j = (j > num) ? (j - step) : j;
 
 
     return j;
@@ -293,6 +302,7 @@ int move_dn(int i, int rows)
     return i;
 }
 
+/*
 void obstacles(char **p_field, char ch)
 {
     int c = rand() % (149 - 100) + 100;
@@ -320,6 +330,7 @@ void danger(char **p_field, int row, int col, char ch)
     }
 
 }
+ */
 
 void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht)
 {
@@ -423,7 +434,7 @@ void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch
 
 
 }
-*/
+ */
 
 /*
           
@@ -479,4 +490,4 @@ void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char c
 
 
 }
-*/
+ */
