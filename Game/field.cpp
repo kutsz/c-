@@ -66,4 +66,31 @@ void del_field(char **p_field, int rows)
 
 }
 
+void obstacles(char **p_field, char ch)
+{
+    int c = rand() % (149 - 100) + 100;
+    int r = rand() % (20 - 10) + 10;
+
+    p_field[r][c] = ch;
+
+}
+
+void danger(char **p_field, int row, int col, char ch)
+{
+    int count = 0;
+    bool fg = true;
+    while (true)
+    {
+        if (count == 2)
+            fg = true;
+        if (count == 148)
+            fg = false;
+
+        p_field[row][count] = ' ';
+        count = fg ? ++count : --count;
+
+        p_field[row][count] = ch;
+    }
+
+}
 
