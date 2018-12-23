@@ -8,29 +8,34 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <iomanip>
-#include <unistd.h> // for sleep()
+#include <unistd.h> // for sleep(sek) ,  usleep(msek)  1/1000
+#include "field.h"
+#include "person.h"
 ////#include <ncursesw/curses.h>
-#include <ncursesw/ncurses.h>
-#include <cstdio>
-#include <stdio.h>
+//#include <ncursesw/ncurses.h>
+//#include <cstdio>
+//#include <stdio.h>
+//#include <iomanip>
 
 
 using namespace std;
 
-void show_field(char **p_field, int rows, int cols);
-void del_field(char **p_field, int rows);
-void init(char **p_field, int rows, int cols);
-char **creat_field(int rows, int cols);
+//void show_field(char **p_field, int rows, int cols);
+//void del_field(char **p_field, int rows);
+//void init(char **p_field, int rows, int cols);
+//char **creat_field(int rows, int cols);
 
-int move_rt(int j, int cols);
+void obstacles(char **p_field, char ch);
+
+//void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
+//void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
+
+//int move_rt(int j, int cols);
+int move_rt(int j, int cols, int lim, int step);
 int move_lt(int j, int num);
 int move_up(int i, int num);
 int move_dn(int i, int rows);
 
-void obstacles(char **p_field, char ch);
-void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
-void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
 void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
 void jump_dn(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
 void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int ht);
@@ -76,7 +81,7 @@ int main()
 
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 step_up_dn = move_up(step_up_dn, 1);
-                
+
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
 
                 break;
@@ -102,14 +107,15 @@ int main()
             {
 
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_rt_lt = move_rt(step_rt_lt, cols);
-                
+                // step_rt_lt = move_rt(step_rt_lt, cols);
+
                 person1(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
+                //usleep(500);
                 person1(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                
+                step_rt_lt = move_rt(step_rt_lt, cols, 9, 3);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 break;
             }
@@ -148,7 +154,7 @@ int main()
                 jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
                 break;
             }
-            
+
             case 's':
             {
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
@@ -168,20 +174,20 @@ int main()
                 break;
             }
         }
-        //        obstacles(p_field, '@');
+        obstacles(p_field, '@');
         ////sleep(2);
         system("clear");
         //        person(p_field, 32, 5, '(',')','#');
         //show_field(p_field, rows, cols);
         //
-//        if (count == 2)
-//            fg = true;
-//        if (count == 148)
-//            fg = false;
-//
-//        danger(p_field, 20, count, ' ');
-//        count = fg ? ++count : --count;
-      //danger(p_field, 20, count, '@');
+        //        if (count == 2)
+        //            fg = true;
+        //        if (count == 148)
+        //            fg = false;
+        //
+        //        danger(p_field, 20, count, ' ');
+        //        count = fg ? ++count : --count;
+        //danger(p_field, 20, count, '@');
 
         show_field(p_field, rows, cols);
 
@@ -191,7 +197,7 @@ int main()
 
     return 0;
 }
-
+/*
 char **creat_field(int rows, int cols)
 {
     char **p_field = new char*[rows];
@@ -256,20 +262,21 @@ void del_field(char **p_field, int rows)
 
 
 }
+*/
 
-
-
-int move_rt(int j, int cols)
+int move_rt(int j, int cols, int lim, int step)
 {
-    j = (j < cols - 9) ? ++j : j;
+    //j = (j < cols - 9) ? ++j : j;
+    j = (j < cols - lim) ? (j + step) : j;
     return j;
 
 }
 
 int move_lt(int j, int num)
 {
-    j = (j > num) ? --j : j;
-    //if(j > 1 && j < cols - 2) --j;
+    //j = (j > num) ? --j : j;
+    j = (j > num) ? j - 3 : j;
+
 
     return j;
 }
@@ -285,12 +292,6 @@ int move_dn(int i, int rows)
     i = (i < rows - 9) ? ++i : i;
     return i;
 }
-//    void move_up(Map & M){
-//            if(M.is_cell_free(pt.x,pt.y++)) /////???????????????????????????????
-//                 pt.y++;
-//  //else cout<<"Car run into obstacle";   // throw 1 ????
-//
-//    }
 
 void obstacles(char **p_field, char ch)
 {
@@ -302,10 +303,10 @@ void obstacles(char **p_field, char ch)
 }
 
 void danger(char **p_field, int row, int col, char ch)
-{   
+{
     int count = 0;
     bool fg = true;
-    while(true)
+    while (true)
     {
         if (count == 2)
             fg = true;
@@ -314,8 +315,8 @@ void danger(char **p_field, int row, int col, char ch)
 
         p_field[row][count] = ' ';
         count = fg ? ++count : --count;
-       
-      p_field[row][count] = ch;
+
+        p_field[row][count] = ch;
     }
 
 }
@@ -350,7 +351,7 @@ void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int 
     for (int i = 0; i < ht; i++)
     {
         person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-        step_rt_lt = move_rt(step_rt_lt, cols);
+        step_rt_lt = move_rt(step_rt_lt, cols, 9, 1);
         step_up_dn = move_up(step_up_dn, 1);
         person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
     }
@@ -362,7 +363,7 @@ void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int 
     for (int i = 0; i < ht; i++)
     {
         person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-        step_rt_lt = move_rt(step_rt_lt, cols);
+        step_rt_lt = move_rt(step_rt_lt, cols, 9, 1);
         step_up_dn = move_dn(step_up_dn, rows);
         person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
     }
@@ -381,6 +382,7 @@ void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int 
  
  
  */
+/*
 void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2)
 {
     //head
@@ -421,18 +423,21 @@ void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch
 
 
 }
+*/
+
 /*
           
     (#)
-   #####  #
+   ##### #
   # ### #   
    # # 
     # ###
-    #   #
-    #   ##
+    #  #
+    #  ##
     ##  
  
  */
+/*
 void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2)
 {
     p_field[row_num][col_num + 2] = ch;
@@ -444,7 +449,7 @@ void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char c
     p_field[row_num + 1][col_num + 3] = ch2;
     p_field[row_num + 1][col_num + 4] = ch2;
     p_field[row_num + 1][col_num + 5] = ch2;
-    p_field[row_num + 1][col_num + 8] = ch2;
+    p_field[row_num + 1][col_num + 7] = ch2;
 
     p_field[row_num + 2][col_num] = ch2;
     p_field[row_num + 2][col_num + 2] = ch2;
@@ -452,9 +457,9 @@ void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char c
     p_field[row_num + 2][col_num + 4] = ch2;
     p_field[row_num + 2][col_num + 6] = ch2;
 
-    p_field[row_num + 3][col_num+1] = ch2;
+    p_field[row_num + 3][col_num + 1] = ch2;
     p_field[row_num + 3][col_num + 3] = ch2;
-    
+
 
     p_field[row_num + 4][col_num + 2] = ch2;
     p_field[row_num + 4][col_num + 4] = ch2;
@@ -462,16 +467,16 @@ void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char c
     p_field[row_num + 4][col_num + 6] = ch2;
 
     p_field[row_num + 5][col_num + 2] = ch2;
-    p_field[row_num + 5][col_num + 6] = ch2;
+    p_field[row_num + 5][col_num + 5] = ch2;
 
     p_field[row_num + 6][col_num + 2] = ch2;
+    p_field[row_num + 6][col_num + 5] = ch2;
     p_field[row_num + 6][col_num + 6] = ch2;
-     p_field[row_num + 6][col_num + 7] = ch2;
 
-    p_field[row_num + 7][col_num+2] = ch2;
+    p_field[row_num + 7][col_num + 2] = ch2;
     p_field[row_num + 7][col_num + 3] = ch2;
-    
+
 
 
 }
-
+*/
