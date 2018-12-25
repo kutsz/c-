@@ -11,6 +11,7 @@
 #include <unistd.h> // for sleep(sek) ,  usleep(msek)  1/1000
 #include "field.h"
 #include "person.h"
+#include "movement.h"
 ////#include <ncursesw/curses.h>
 //#include <ncursesw/ncurses.h>
 //#include <cstdio>
@@ -31,17 +32,17 @@ using namespace std;
 //void person(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
 //void person1(char **p_field, int row_num, int col_num, char ch, char ch1, char ch2);
 
-//int move_rt(int j, int cols);
-int move_rt(int j, int cols, int lim, int step);
-//int move_lt(int j, int num);
-int move_lt(int j, int num, int step);
-int move_up(int i, int num);
-int move_dn(int i, int rows);
-
-void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
-void jump_dn(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
-void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int ht);
-void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int rows, int ht);
+////int move_rt(int j, int cols);
+//int move_rt(int j, int cols, int lim, int step);
+////int move_lt(int j, int num);
+//int move_lt(int j, int num, int step);
+//int move_up(int i, int num);
+//int move_dn(int i, int rows);
+//
+//void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
+//void jump_dn(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
+//void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int ht);
+//void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int rows, int ht);
 
 int main()
 {
@@ -120,6 +121,7 @@ int main()
                 person_rt(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
+                //sleeping(1000000);
                 sleep(1);
                 //usleep(500);
                 person_rt(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
@@ -128,10 +130,15 @@ int main()
                 break;
             }
 
-            case 'x':
+            case 's':
             {
                 jump_up(p_field, step_up_dn, step_rt_lt, rows, 10);
-                //jump_dn(p_field, step_up_dn, step_rt_lt, rows);
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10);
+                system("clear");
+                show_field(p_field, rows, cols);
 
                 break;
             }
@@ -144,7 +151,7 @@ int main()
                 break;
             }
 
-            case 'v':
+            case 'x':
             {
                 jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10);
                 system("clear");
@@ -162,8 +169,14 @@ int main()
                 jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
                 break;
             }
+            case 'n':
+            {
+                //jump_up(p_field, step_up_dn, step_rt_lt, rows);
+                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10);
 
-            case 's':
+                break;
+            }
+            case ';':
             {
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 person_lt(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
@@ -272,7 +285,7 @@ void del_field(char **p_field, int rows)
 
 }
  */
-
+/*
 int move_rt(int j, int cols, int lim, int step)
 {
     //j = (j < cols - 9) ? ++j : j;
@@ -301,7 +314,7 @@ int move_dn(int i, int rows)
     i = (i < rows - 9) ? ++i : i;
     return i;
 }
-
+*/
 /*
 void obstacles(char **p_field, char ch)
 {
@@ -331,7 +344,7 @@ void danger(char **p_field, int row, int col, char ch)
 
 }
  */
-
+/*
 void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht)
 {
     for (int i = 0; i < ht; i++)
@@ -380,7 +393,7 @@ void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int 
     }
 
 }
-
+*/
 /*
     (#)
    #####
