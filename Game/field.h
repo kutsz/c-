@@ -20,6 +20,7 @@ char **creat_field(int rows, int cols);
 
 void obstacles(char **p_field, char ch);
 void danger(char **p_field, int row, int col, char ch);
+void sleeping(int howlong);
 
 #endif /* FIELD_H */
 
