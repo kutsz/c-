@@ -94,3 +94,11 @@ void danger(char **p_field, int row, int col, char ch)
 
 }
 
+void sleeping(int howlong)
+{
+    for(int i = 0; i < howlong; i++)
+    {
+        
+    }
+}
+
