@@ -1,5 +1,6 @@
 #include "movement.h"
 #include "person.h"
+#include "field.h"
 
 int move_rt(int j, int cols, int lim_rt, int step)
 {
@@ -23,13 +24,21 @@ int move_up(int i, int lim_up)
     i = (i > lim_up) ? --i : i;
     return i;
 }
+//bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch);
+
+void move_up(char **p_field, int& row_num, int& col_num, int dist_up, int dist_rt, char ch, int lim_up)
+{
+//    if (row_num > lim_up && checkPath_up(p_field, row_num, col_num, dist_up, dist_rt, ch))
+    if (checkPath_up(p_field, row_num, col_num, dist_up, dist_rt, ch))
+        --row_num;
+
+}
 
 int move_dn(int i, int rows, int lim_dn)
 {
     i = (i < rows - lim_dn) ? ++i : i;
     return i;
 }
-
 
 void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht, int lim_up)
 {
