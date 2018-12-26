@@ -23,23 +23,25 @@ int main()
     int rows = 42; //42
     int cols = 150; //150
 
-    char **p_field = creat_field(rows, cols);
-    init(p_field, rows, cols);
-
-
     int rowNum = 33;
     int colNum = 4;
-
-    person(p_field, rowNum, colNum, '(', ')', '#');
-    show_field(p_field, rows, cols);
-
 
     bool flag = true;
     char ch = ' ';
     int step_rt_lt = colNum;
     int step_up_dn = rowNum;
-    int count = 0;
-    bool fg = true;
+    //int count = 0;
+    //bool fg = true;
+    const int lim_dn = 9;
+    const int lim_rt = 9;
+    const int lim_up = 1;
+    
+    char **p_field = creat_field(rows, cols);
+    init(p_field, rows, cols);
+    
+    person(p_field, rowNum, colNum, '(', ')', '#');
+    show_field(p_field, rows, cols);
+
     while (flag)
     {
         cin >> ch;
@@ -52,7 +54,7 @@ int main()
             {
 
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_up_dn = move_up(step_up_dn, 1);
+                step_up_dn = move_up(step_up_dn, lim_up);
 
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
 
@@ -62,7 +64,7 @@ int main()
             {
 
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_up_dn = move_dn(step_up_dn, rows);
+                step_up_dn = move_dn(step_up_dn, rows, lim_dn);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
 
                 break;
@@ -96,18 +98,18 @@ int main()
                 sleep(1);
                 //usleep(500);
                 person_rt(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_rt_lt = move_rt(step_rt_lt, cols, 9, 3);
+                step_rt_lt = move_rt(step_rt_lt, cols, lim_rt, 3);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 break;
             }
 
             case 's':
             {
-                jump_up(p_field, step_up_dn, step_rt_lt, rows, 10);
+                jump_up(p_field, step_up_dn, step_rt_lt, rows, 10, lim_up);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
-                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10);
+                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
                 system("clear");
                 show_field(p_field, rows, cols);
 
@@ -117,14 +119,14 @@ int main()
             case 'c':
             {
                 //jump_up(p_field, step_up_dn, step_rt_lt, rows);
-                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10);
+                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
 
                 break;
             }
 
             case 'x':
             {
-                jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10);
+                jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10, lim_rt);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
@@ -143,7 +145,7 @@ int main()
             case 'n':
             {
                 //jump_up(p_field, step_up_dn, step_rt_lt, rows);
-                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10);
+                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
 
                 break;
             }
