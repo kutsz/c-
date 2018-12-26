@@ -1,6 +1,5 @@
 #include "field.h"
 
-
 char **creat_field(int rows, int cols)
 {
     char **p_field = new char*[rows];
@@ -74,8 +73,72 @@ void obstacles(char **p_field, char ch)
     p_field[r][c] = ch;
 
 }
+
+void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char ch)
+{
+    for (int i = 0; i < dist_rt; i++)
+    {
+        p_field[row_num][col_num + i] = ch;
+
+    }
+
+}
 // step_rt_lt-2  step_rt_lt+8
 //step_up_dn-1  step_up_dn+8
+
+// dist_up = 1
+
+bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch)
+{
+
+    for (int i = 0; i < dist_rt; i++)
+    {
+        if (p_field[row_num - dist_up][col_num + i] == ch)
+            return false;
+    }
+    return true;
+
+
+}
+
+bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
+{
+
+    for (int i = 0; i < dist_rt; i++)
+    {
+        if (p_field[row_num + dist_dn][col_num + i] == ch)
+            return false;
+    }
+    return true;
+
+
+}
+
+bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
+{
+
+    for (int i = 0; i < dist_dn; i++)
+    {
+        if (p_field[row_num + i][col_num + dist_rt] == ch)
+            return false;
+    }
+    return true;
+
+
+}
+
+bool checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, int dist_lt, char ch)
+{
+
+    for (int i = 0; i < dist_dn; i++)
+    {
+        if (p_field[row_num + i][col_num - dist_lt] == ch)
+            return false;
+    }
+    return true;
+
+
+}
 
 void danger(char **p_field, int row, int col, char ch)
 {
@@ -98,9 +161,9 @@ void danger(char **p_field, int row, int col, char ch)
 
 void sleeping(int howlong)
 {
-    for(int i = 0; i < howlong; i++)
+    for (int i = 0; i < howlong; i++)
     {
-        
+
     }
 }
 
