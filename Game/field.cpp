@@ -74,6 +74,8 @@ void obstacles(char **p_field, char ch)
     p_field[r][c] = ch;
 
 }
+// step_rt_lt-2  step_rt_lt+8
+//step_up_dn-1  step_up_dn+8
 
 void danger(char **p_field, int row, int col, char ch)
 {
