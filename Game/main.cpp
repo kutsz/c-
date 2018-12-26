@@ -35,10 +35,18 @@ int main()
     const int lim_dn = 9;
     const int lim_rt = 9;
     const int lim_up = 1;
+    const int dist_up = 1;
+    const int dist_rt = 8;
+    const int dist_dn = 8;
+    const int dist_lt = 1;
     
+    const int obst_dist_rt = 10;
+    
+
     char **p_field = creat_field(rows, cols);
     init(p_field, rows, cols);
-    
+    obstacles_horiz(p_field, rowNum - 3, colNum, obst_dist_rt, 'X');
+
     person(p_field, rowNum, colNum, '(', ')', '#');
     show_field(p_field, rows, cols);
 
@@ -52,17 +60,18 @@ int main()
         switch (ch) {
             case 'w':
             {
+                if (checkPath_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, 'X'))
+                {
+                    person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                    step_up_dn = move_up(step_up_dn, lim_up);
 
-                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_up_dn = move_up(step_up_dn, lim_up);
-
-                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
-
+                    person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                }
                 break;
             }
             case 'z':
             {
-
+               
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 step_up_dn = move_dn(step_up_dn, rows, lim_dn);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
