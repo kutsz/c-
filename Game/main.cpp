@@ -39,9 +39,9 @@ int main()
     const int dist_rt = 8;
     const int dist_dn = 8;
     const int dist_lt = 1;
-    
+
     const int obst_dist_rt = 10;
-    
+
 
     char **p_field = creat_field(rows, cols);
     init(p_field, rows, cols);
@@ -60,6 +60,7 @@ int main()
         switch (ch) {
             case 'w':
             {
+                /*
                 if (checkPath_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, 'X'))
                 {
                     person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
@@ -67,11 +68,18 @@ int main()
 
                     person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 }
+                 */
+
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                move_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, 'X');
+
+                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+
                 break;
             }
             case 'z':
             {
-               
+
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 step_up_dn = move_dn(step_up_dn, rows, lim_dn);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
@@ -89,7 +97,8 @@ int main()
                 sleep(1);
                 //usleep(500);
                 person_lt(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                step_rt_lt = move_lt(step_rt_lt, 4, 3);
+                 //step_rt_lt = move_lt(step_rt_lt, 4, 3);
+                move_lt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_lt, 'X', 4, 3);
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
 
                 break;
