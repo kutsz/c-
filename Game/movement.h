@@ -15,15 +15,15 @@
 #define MOVEMENT_H
 
 //int move_rt(int j, int cols);
-int move_rt(int j, int cols, int lim, int step);
+int move_rt(int j, int cols, int lim_rt, int step);
 //int move_lt(int j, int num);
 int move_lt(int j, int num, int step);
-int move_up(int i, int num);
-int move_dn(int i, int rows);
+int move_up(int i, int lim_up);
+int move_dn(int i, int rows, int lim_dn);
 
-void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
-void jump_dn(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht);
-void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int ht);
+void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht, int lim_up);
+void jump_dn(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht, int lim);
+void jump_up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int ht, int lim_rt);
 void jump_dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int cols, int rows, int ht);
 
 
