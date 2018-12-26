@@ -19,8 +19,13 @@ void init(char **p_field, int rows, int cols);
 char **creat_field(int rows, int cols);
 
 void obstacles(char **p_field, char ch);
+void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char ch);
 void danger(char **p_field, int row, int col, char ch);
 void sleeping(int howlong);
 
+bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch);
+bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch);
+bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch);
+bool checkPath_lt(char **p_field, int row_num, int col_num, int dist_up, int dist_lt, char ch);
 #endif /* FIELD_H */
 
