@@ -9,6 +9,8 @@ int move_rt(int j, int cols, int lim_rt, int step)
     return j;
 
 }
+//bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
+
 
 int move_lt(int j, int num, int step)
 {
@@ -18,17 +20,26 @@ int move_lt(int j, int num, int step)
 
     return j;
 }
+//bool checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, int dist_lt, char ch)
+
+void move_lt(char **p_field, int& row_num, int& col_num, int dist_dn, int dist_lt, char ch, int num, int step)
+{
+
+    //if (col_num > num && checkPath_lt(p_field,row_num,col_num, dist_dn,dist_lt,ch))
+        if (checkPath_lt(p_field,row_num,col_num, dist_dn,dist_lt,ch))
+        col_num = col_num - step;
+
+}
 
 int move_up(int i, int lim_up)
 {
     i = (i > lim_up) ? --i : i;
     return i;
 }
-//bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch);
 
-void move_up(char **p_field, int& row_num, int& col_num, int dist_up, int dist_rt, char ch, int lim_up)
+void move_up(char **p_field, int& row_num, int& col_num, int dist_up, int dist_rt, char ch)
 {
-//    if (row_num > lim_up && checkPath_up(p_field, row_num, col_num, dist_up, dist_rt, ch))
+    //    if (row_num > lim_up && checkPath_up(p_field, row_num, col_num, dist_up, dist_rt, ch))
     if (checkPath_up(p_field, row_num, col_num, dist_up, dist_rt, ch))
         --row_num;
 
