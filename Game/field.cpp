@@ -83,6 +83,16 @@ void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char
     }
 
 }
+
+void obstacles_vert(char **p_field, int row_num, int col_num, int dist_dn, char ch)
+{
+    for (int i = 0; i < dist_dn; i++)
+    {
+        p_field[row_num + i][col_num] = ch;
+
+    }
+
+}
 // step_rt_lt-2  step_rt_lt+8
 //step_up_dn-1  step_up_dn+8
 
@@ -101,6 +111,28 @@ bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dis
 
 }
 
+void test_checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch)
+{
+
+    for (int i = 0; i < dist_rt; i++)
+    {
+        p_field[row_num - dist_up][col_num + i] = ch;
+        std::cout << p_field[row_num - dist_up][col_num + i];
+
+    }
+
+}
+
+void test_checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
+{
+
+    for (int i = 0; i < dist_rt; i++)
+    {
+        p_field[row_num + dist_dn][col_num + i] = ch;
+        std::cout << p_field[row_num + dist_dn][col_num + i];
+    }
+}
+
 bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
 {
 
@@ -114,6 +146,17 @@ bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dis
 
 }
 
+void test_checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
+{
+
+    for (int i = 0; i < dist_dn; i++)
+    {
+        p_field[row_num + i][col_num + dist_rt] = ch;
+        std::cout << p_field[row_num + i][col_num + dist_rt];
+
+    }
+}
+
 bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
 {
 
@@ -124,6 +167,17 @@ bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dis
     }
     return true;
 
+
+}
+
+void test_checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, int dist_lt, char ch)
+{
+
+    for (int i = 0; i < dist_dn; i++)
+    {
+        p_field[row_num + i][col_num - dist_lt] = ch;
+        std::cout << p_field[row_num + i][col_num - dist_lt];
+    }
 
 }
 
