@@ -106,6 +106,17 @@ void jump_up(char **p_field, int& step_up_dn, int& step_rt_lt, int rows, int ht,
 
 }
 
+void jump_Dn1(char **p_field, int& step_up_dn, int& step_rt_lt, int step_lth, int dist_dn, int dist_rt, char ch)
+{
+
+    while (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, ch))
+    {
+        person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+        move_Dn(step_up_dn, step_lth);
+        person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+    }
+}
+
 //bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
 //void move_Dn(int& step_up_dn, int step_lth)
 
@@ -150,6 +161,24 @@ void jump_Up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int st
             move_Rt(step_rt_lt, step_lth);
             person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
         }
+    }
+
+}
+
+void jump_Dn_fd1(char **p_field, int& step_up_dn, int& step_rt_lt, int step_lth, int dist_dn, int dist_rt, char ch)
+{
+    while (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, ch))   // check down
+    {
+        if (checkPath_rt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, ch))  // check right
+        {
+            person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+            move_Rt(step_rt_lt, step_lth);
+            person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+        }
+        person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+        move_Dn(step_up_dn, step_lth);
+        person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+
     }
 
 }
