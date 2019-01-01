@@ -68,6 +68,7 @@ int main()
         //cin.get(ch);
 
         switch (ch) {
+                // moving up
             case 'w':
             {
 
@@ -87,6 +88,7 @@ int main()
 
                 break;
             }
+                // moving down
             case 'z':
             {
                 if (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X'))
@@ -97,6 +99,7 @@ int main()
                 }
                 break;
             }
+                // moving left
             case 'a':
             {
                 if (checkPath_lt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_lt, 'X') &&
@@ -117,6 +120,7 @@ int main()
                 }
                 break;
             }
+                //moving right
             case 'd':
             {
                 if (checkPath_rt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X') &&
@@ -139,16 +143,17 @@ int main()
                 }
                 break;
             }
-
+                // jump up, down
             case 's':
             {
-                //jump_up(p_field, step_up_dn, step_rt_lt, rows, 10, lim_up);
+                ////jump_up(p_field, step_up_dn, step_rt_lt, rows, 10, lim_up);
                 jump_Up(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
-                //jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
-                jump_Dn(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
+                ////jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
+                //jump_Dn(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
+                jump_Dn1(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
 
@@ -162,16 +167,17 @@ int main()
 
                 break;
             }
-
+                // jumping up, forward, down 
             case 'x':
             {
-                //jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10, lim_rt);
+                ////jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10, lim_rt);
                 jump_Up_fd(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_dn, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
-                //jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
-                jump_Dn_fd(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
+                ////jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
+                //jump_Dn_fd(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
+                jump_Dn_fd1(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 break;
