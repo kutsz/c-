@@ -21,8 +21,12 @@ void move_Dn(int& step_up_dn, int step_lth);
 
 void jump_Up(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int step_lth, int dist_up, int dist_rt, char ch);
 void jump_Dn(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int step_lth, int dist_dn, int dist_rt, char ch);
+void jump_Dn1(char **p_field, int& step_up_dn, int& step_rt_lt, int step_lth, int dist_dn, int dist_rt, char ch);
 void jump_Up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int step_lth, int dist_up, int dist_dn, int dist_rt, char ch);
+void jump_Up_Bc(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int step_lth, int dist_up, int dist_dn, int dist_rt, int dist_lt, char ch);
 void jump_Dn_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int step_lth, int dist_dn, int dist_rt, char ch);
+void jump_Dn_Fd(char **p_field, int& step_up_dn, int& step_rt_lt, int step_lth, int dist_dn, int dist_rt, char ch);
+void jump_Dn_Bc(char **p_field, int& step_up_dn, int& step_rt_lt, int step_lth, int dist_dn, int dist_rt, int dist_lt, char ch);
 
 int move_rt(int j, int cols, int lim_rt, int step);
 int move_lt(int j, int num, int step);
