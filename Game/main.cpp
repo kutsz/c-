@@ -23,13 +23,13 @@ int main()
     int rows = 42; //42
     int cols = 150; //150
 
-    int rowNum = 33;
-    int colNum = 4;
+    int rowNumStart = 33;
+    int colNumStart = 1;
 
     bool flag = true;
     char ch = ' ';
-    int step_rt_lt = colNum;
-    int step_up_dn = rowNum;
+    int step_rt_lt = colNumStart;
+    int step_up_dn = rowNumStart;
     //int count = 0;
     //bool fg = true;
     const int lim_dn = 9;
@@ -48,9 +48,9 @@ int main()
 
     char **p_field = creat_field(rows, cols);
     init(p_field, rows, cols);
-
-    //obstacles_horiz(p_field, rowNum - 3, colNum, obst_dist_rt, 'X');
-    //obstacles_vert(p_field, rowNum - 2, colNum, dist_dn, 'X');
+    //person_mv_jp(p_field, step_up_dn, step_rt_lt + 70, '(', ')', '#');
+    obstacles_horiz(p_field, rowNumStart + 4, colNumStart + 40, obst_dist_rt, 'X');
+    // obstacles_vert(p_field, rowNumStart - 2, colNumStart, dist_dn, 'X');
 
     //    test_checkPath_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, 'X');
     //    test_checkPath_rt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X');
@@ -147,13 +147,29 @@ int main()
             case 's':
             {
                 ////jump_up(p_field, step_up_dn, step_rt_lt, rows, 10, lim_up);
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                
                 jump_Up(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
                 ////jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
                 //jump_Dn(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
+                
                 jump_Dn1(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
+                
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
 
@@ -177,7 +193,7 @@ int main()
                 sleep(1);
                 ////jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
                 //jump_Dn_fd(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
-                jump_Dn_fd1(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
+                jump_Dn_Fd(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 break;
@@ -186,18 +202,17 @@ int main()
             case 'b':
             {
                 //// jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10);
-                jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
+                //jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
+                jump_Up_Bc(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_dn, dist_rt, dist_lt, ch_X);
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                jump_Dn_Bc(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, dist_lt, ch_X);
+                system("clear");
+                show_field(p_field, rows, cols);
                 break;
             }
-            case 'n':
-            {
-                //jump_up(p_field, step_up_dn, step_rt_lt, rows);
-                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
-
-                break;
-            }
-
-
+            
             case 'q':
             {
                 flag = false;
@@ -211,9 +226,18 @@ int main()
             }
         }
         //obstacles(p_field, '@');
+        
+        // movin down if no obstacles
+        while (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X'))
+        {
+            person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+            move_Dn(step_up_dn, 1);
+            person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+        }
 
         system("clear");
         show_field(p_field, rows, cols);
+
 
     }
 
