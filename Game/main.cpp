@@ -48,7 +48,7 @@ int main()
 
     char **p_field = creat_field(rows, cols);
     init(p_field, rows, cols);
-    //person_mv_jp(p_field, step_up_dn, step_rt_lt + 70, '(', ')', '#');
+
     obstacles_horiz(p_field, rowNumStart + 4, colNumStart + 40, obst_dist_rt, 'X');
     // obstacles_vert(p_field, rowNumStart - 2, colNumStart, dist_dn, 'X');
 
@@ -68,37 +68,7 @@ int main()
         //cin.get(ch);
 
         switch (ch) {
-                // moving up
-            case 'w':
-            {
 
-                if (checkPath_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, 'X'))
-                {
-                    person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                    //step_up_dn = move_up(step_up_dn, lim_up);
-                    move_Up(step_up_dn, 1);
-                    person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
-                }
-
-
-                //                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                //                move_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, 'X');
-                //
-                //                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
-
-                break;
-            }
-                // moving down
-            case 'z':
-            {
-                if (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X'))
-                {
-                    person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                    move_Dn(step_up_dn, 1);
-                    person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
-                }
-                break;
-            }
                 // moving left
             case 'a':
             {
@@ -127,48 +97,45 @@ int main()
                         !checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X'))
                 {
                     person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                    // step_rt_lt = move_rt(step_rt_lt, cols);
-
                     person_rt(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                     system("clear");
                     show_field(p_field, rows, cols);
-                    //sleeping(1000000);
                     sleep(1);
-                    //usleep(500);
                     person_rt(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                    //step_rt_lt = move_rt(step_rt_lt, cols, lim_rt, 3);
-                    //move_rt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X', 3);
                     move_Rt(step_rt_lt, 1);
                     person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 }
                 break;
             }
                 // jump up, down
-            case 's':
+            case 'w':
             {
-                ////jump_up(p_field, step_up_dn, step_rt_lt, rows, 10, lim_up);
+                //sit down to move up
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
                 person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                
+
+                // move up
                 jump_Up(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
-                ////jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
-                //jump_Dn(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
-                
+
+                // move down
                 jump_Dn1(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
-                
+
+                //sit down 
                 person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
                 person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
                 person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+
+                // stand up
                 person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
@@ -176,43 +143,77 @@ int main()
                 break;
             }
 
-            case 'c':
-            {
-                //jump_up(p_field, step_up_dn, step_rt_lt, rows);
-                jump_dn(p_field, step_up_dn, step_rt_lt, rows, 10, lim_dn);
 
-                break;
-            }
                 // jumping up, forward, down 
-            case 'x':
+            case 's':
             {
-                ////jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10, lim_rt);
+                //sit down to move up
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+
+                //move up forward
                 jump_Up_fd(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_dn, dist_rt, ch_X);
                 system("clear");
                 show_field(p_field, rows, cols);
                 sleep(1);
-                ////jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
-                //jump_Dn_fd(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_dn, dist_rt, ch_X);
+
+                //move down forward
                 jump_Dn_Fd(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, ch_X);
+
+                //sit down 
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+
+                // stand up
+                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+
+                break;
+            }
+                // jumping up, back, down 
+            case 'z':
+            {
+                //sit down to move up
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+
+                //move up back
+                jump_Up_Bc(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_dn, dist_rt, dist_lt, ch_X);
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+
+                //move down back
+                jump_Dn_Bc(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, dist_lt, ch_X);
+
+                //sit down 
+                person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
+                system("clear");
+                show_field(p_field, rows, cols);
+                sleep(1);
+                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
+
+                //
+                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
                 system("clear");
                 show_field(p_field, rows, cols);
                 break;
             }
 
-            case 'b':
-            {
-                //// jump_up_fd(p_field, step_up_dn, step_rt_lt, cols, 10);
-                //jump_dn_fd(p_field, step_up_dn, step_rt_lt, cols, rows, 10);
-                jump_Up_Bc(p_field, step_up_dn, step_rt_lt, ht, step_lth, dist_up, dist_dn, dist_rt, dist_lt, ch_X);
-                system("clear");
-                show_field(p_field, rows, cols);
-                sleep(1);
-                jump_Dn_Bc(p_field, step_up_dn, step_rt_lt, step_lth, dist_dn, dist_rt, dist_lt, ch_X);
-                system("clear");
-                show_field(p_field, rows, cols);
-                break;
-            }
-            
             case 'q':
             {
                 flag = false;
@@ -226,7 +227,7 @@ int main()
             }
         }
         //obstacles(p_field, '@');
-        
+
         // movin down if no obstacles
         while (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X'))
         {
