@@ -18,11 +18,11 @@ void del_field(char **p_field, int rows);
 void init(char **p_field, int rows, int cols);
 char **creat_field(int rows, int cols);
 
-void obstacles(char **p_field, char ch);
+void obstacles(char **p_field, char ch, int numRow, int numCol);
 void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char ch);
 void obstacles_vert(char **p_field, int row_num, int col_num, int dist_dn, char ch);
 void danger(char **p_field, int row, int col, char ch);
-void sleeping(int howlong);
+void menu();
 
 bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch);
 bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch);
