@@ -185,7 +185,7 @@ void jump_Up_fd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int st
 
 void jump_Up_mvFd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int rt_lth, int step_lth, int dist_up, int dist_dn, int dist_rt, char ch)
 {
-   
+
     for (int i = 0; i < ht; i++)
     {
         if (checkPath_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, ch))
@@ -198,7 +198,7 @@ void jump_Up_mvFd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int 
     }
     for (int i = 0; i < rt_lth; i++)
     {
-        
+
         if (checkPath_rt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, ch))
         {
             person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
@@ -210,9 +210,9 @@ void jump_Up_mvFd(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int 
 
 }
 
-void jump_Up_mvBc(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int rt_lth, int step_lth, int dist_up, int dist_dn, int dist_rt,int dist_lt, char ch)
+void jump_Up_mvBc(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int rt_lth, int step_lth, int dist_up, int dist_dn, int dist_rt, int dist_lt, char ch)
 {
-   
+
     for (int i = 0; i < ht; i++)
     {
         if (checkPath_up(p_field, step_up_dn, step_rt_lt, dist_up, dist_rt, ch))
@@ -225,7 +225,7 @@ void jump_Up_mvBc(char **p_field, int& step_up_dn, int& step_rt_lt, int ht, int 
     }
     for (int i = 0; i < rt_lth; i++)
     {
-        
+
         if (checkPath_lt(p_field, step_up_dn, step_rt_lt, dist_dn, dist_lt, ch))
         {
             person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
