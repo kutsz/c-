@@ -56,7 +56,6 @@ void del_field(char **p_field, int rows)
     }
 
     delete [] p_field;
-
 }
 
 void obstacles(char **p_field, char ch, int numRow, int numCol)
@@ -138,7 +137,6 @@ void test_checkPath_up(char **p_field, int row_num, int col_num, int dist_up, in
         std::cout << p_field[row_num - dist_up][col_num + i];
 
     }
-
 }
 
 void test_checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
@@ -176,7 +174,6 @@ void test_checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, in
 
 void menu()
 {
-
     cout << "[w - jump up,a - move left,d - move right,s - jump up forward,z - jump up back,x - jump up a bit of back,e - jump up a bit of forward,q - quit]:  ";
 }
 
