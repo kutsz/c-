@@ -1,7 +1,7 @@
 
 /* 
  * File:   main.cpp
- * Author: valentine
+ * Author: valentyn
  *
  * Created on 30 ноября 2018 г., 14:30
  */
@@ -12,7 +12,6 @@
 #include "field.h"
 #include "person.h"
 #include "movement.h"
-//#include <ncursesw/ncurses.h>
 #include <thread>
 
 
@@ -31,11 +30,11 @@ int main()
     int colNumStart = 1;
     int step_rt_lt = colNumStart;
     int step_up_dn = rowNumStart;
-    //int count = 0;
-    //bool fg = true;
+   
     //const int lim_dn = 9;
     //const int lim_rt = 9;
     //const int lim_up = 1;
+    
     const int dist_up = 1;
     const int dist_rt = 8;
     const int dist_dn = 8;
@@ -44,7 +43,6 @@ int main()
     int rt_lth = 4;
     int step_lth = 1;
     char ch_X = 'X';
-
     const int obst_dist_rt = 10;
 
 
@@ -53,14 +51,14 @@ int main()
 
     obstacles_horiz(p_field, rowNumStart + 5, colNumStart + 20, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart + 3, colNumStart + 40, obst_dist_rt, 'X');
-    obstacles_horiz(p_field, rowNumStart -14, colNumStart + 40, obst_dist_rt, 'X');
+    obstacles_horiz(p_field, rowNumStart - 14, colNumStart + 40, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart, colNumStart + 60, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart - 10, colNumStart + 60, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart - 3, colNumStart + 80, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart - 10, colNumStart + 100, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart - 7, colNumStart + 118, obst_dist_rt, 'X');
     obstacles_horiz(p_field, rowNumStart - 3, colNumStart + 138, obst_dist_rt, 'X');
-    
+
     obstacles_vert(p_field, rowNumStart + 3, colNumStart + 100, 5, 'X');
     obstacles_vert(p_field, rowNumStart + 3, colNumStart + 120, 5, 'X');
 
@@ -79,9 +77,6 @@ int main()
     while (flag)
     {
         cin >> ch;
-        //ch = getch();
-        //ch = getchar();
-        //cin.get(ch);
 
         switch (ch) {
 
@@ -282,26 +277,13 @@ int main()
 
                 person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
 
-                //jump_Up_mvFd(p_field, step_up_dn, step_rt_lt, ht, rt_lth, step_lth, dist_up, dist_dn, dist_rt, ch_X);
                 jump_Up_mvBc(p_field, step_up_dn, step_rt_lt, ht, rt_lth, step_lth, dist_up, dist_dn, dist_rt, dist_lt, ch_X);
-
-                //sit down 
-                //person(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                // person_mv_jp(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
 
                 system("clear");
                 show_field(p_field, rows, cols);
 
                 //sleep(1);
                 this_thread::sleep_for(chrono::milliseconds(500));
-
-                //                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                //
-                //                //stand up
-                //                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
-                //
-                //                system("clear");
-                //                show_field(p_field, rows, cols);
 
                 break;
             }
@@ -318,7 +300,7 @@ int main()
                 this_thread::sleep_for(chrono::milliseconds(500));
 
                 person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-        
+
                 jump_Up_mvFd(p_field, step_up_dn, step_rt_lt, ht, rt_lth, step_lth, dist_up, dist_dn, dist_rt, ch_X);
                 //jump_Up_mvBc(p_field, step_up_dn, step_rt_lt, ht, rt_lth, step_lth, dist_up, dist_dn, dist_rt, dist_lt, ch_X);
 
@@ -331,14 +313,6 @@ int main()
 
                 //sleep(1);
                 this_thread::sleep_for(chrono::milliseconds(500));
-
-                //                person_mv_jp(p_field, step_up_dn, step_rt_lt, ' ', ' ', ' ');
-                //
-                //                //stand up
-                //                person(p_field, step_up_dn, step_rt_lt, '(', ')', '#');
-                //
-                //                system("clear");
-                //                show_field(p_field, rows, cols);
 
                 break;
             }
@@ -354,7 +328,6 @@ int main()
                 break;
             }
         }
-        //obstacles(p_field, '@');
 
         // movin down if no obstacles
         while (checkPath_dn(p_field, step_up_dn, step_rt_lt, dist_dn, dist_rt, 'X'))
