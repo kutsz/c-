@@ -201,12 +201,6 @@ void person_mv_jp(char **p_field, int row_num, int col_num, char ch, char ch1, c
     p_field[row_num + 6][col_num + 4] = ch2;
     p_field[row_num + 6][col_num + 6] = ch2;
 
-    //    p_field[row_num + 5][col_num + 2] = ch2;
-    //    p_field[row_num + 5][col_num + 6] = ch2;
-    //
-    //    p_field[row_num + 6][col_num + 2] = ch2;
-    //    p_field[row_num + 6][col_num + 6] = ch2;
-
     p_field[row_num + 7][col_num + 1] = ch2;
     p_field[row_num + 7][col_num + 2] = ch2;
     p_field[row_num + 7][col_num + 6] = ch2;
