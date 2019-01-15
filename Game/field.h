@@ -21,7 +21,6 @@ char **creat_field(int rows, int cols);
 void obstacles(char **p_field, char ch, int numRow, int numCol);
 void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char ch);
 void obstacles_vert(char **p_field, int row_num, int col_num, int dist_dn, char ch);
-void danger(char **p_field, int row, int col, char ch);
 void menu();
 
 bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dist_rt, char ch);
