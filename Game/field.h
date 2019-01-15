@@ -2,7 +2,7 @@
 
 /* 
  * File:   field.h
- * Author: valentine
+ * Author: valentyn
  *
  * Created on 23 декабря 2018 г., 17:00
  */
