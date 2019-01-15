@@ -9,8 +9,6 @@ char **creat_field(int rows, int cols)
         p_field[i] = new char[cols];
     }
 
-
-
     return p_field;
 }
 
@@ -25,7 +23,6 @@ void init(char **p_field, int rows, int cols)
                 p_field[i][j] = ' ';
             else
                 p_field[i][j] = 'X';
-            ;
         }
     }
 }
@@ -60,18 +57,11 @@ void del_field(char **p_field, int rows)
 
     delete [] p_field;
 
-    //cout << "OK" << endl;
-
-
 }
 
 void obstacles(char **p_field, char ch, int numRow, int numCol)
 {
-    //int c = rand() % (149 - 100) + 100;
-    //int r = rand() % (20 - 10) + 10;
-
     p_field[numRow][numCol] = ch;
-
 }
 
 void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char ch)
@@ -79,9 +69,7 @@ void obstacles_horiz(char **p_field, int row_num, int col_num, int dist_rt, char
     for (int i = 0; i < dist_rt; i++)
     {
         p_field[row_num][col_num + i] = ch;
-
     }
-
 }
 
 void obstacles_vert(char **p_field, int row_num, int col_num, int dist_dn, char ch)
@@ -89,9 +77,7 @@ void obstacles_vert(char **p_field, int row_num, int col_num, int dist_dn, char 
     for (int i = 0; i < dist_dn; i++)
     {
         p_field[row_num + i][col_num] = ch;
-
     }
-
 }
 // step_rt_lt-2  step_rt_lt+8
 //step_up_dn-1  step_up_dn+8
@@ -107,8 +93,6 @@ bool checkPath_up(char **p_field, int row_num, int col_num, int dist_up, int dis
             return false;
     }
     return true;
-
-
 }
 
 bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
@@ -120,8 +104,6 @@ bool checkPath_dn(char **p_field, int row_num, int col_num, int dist_dn, int dis
             return false;
     }
     return true;
-
-
 }
 
 bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dist_rt, char ch)
@@ -133,8 +115,6 @@ bool checkPath_rt(char **p_field, int row_num, int col_num, int dist_dn, int dis
             return false;
     }
     return true;
-
-
 }
 
 bool checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, int dist_lt, char ch)
@@ -146,8 +126,6 @@ bool checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, int dis
             return false;
     }
     return true;
-
-
 }
 //-------- show checking path -------
 
@@ -194,26 +172,7 @@ void test_checkPath_lt(char **p_field, int row_num, int col_num, int dist_dn, in
     }
 
 }
-//---------------
-
-void danger(char **p_field, int row, int col, char ch)
-{
-    int count = 0;
-    bool fg = true;
-    while (true)
-    {
-        if (count == 2)
-            fg = true;
-        if (count == 148)
-            fg = false;
-
-        p_field[row][count] = ' ';
-        count = fg ? ++count : --count;
-
-        p_field[row][count] = ch;
-    }
-
-}
+//----------
 
 void menu()
 {
